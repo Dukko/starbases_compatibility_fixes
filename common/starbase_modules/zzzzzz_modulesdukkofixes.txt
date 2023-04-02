@@ -1,0 +1,184 @@
+orbital_lab = {
+    possible = {
+        always = no
+        }
+}
+
+sploit_research_terminal = {
+	icon = "GFX_starbase_research_terminal"
+	section = "REFINERY_STARBASE_SECTION"
+	construction_days = 180
+	initial = yes
+
+	potential = {
+		is_orbital_ring = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_research_station"
+			solar_system = {
+				any_system_planet = {
+					OR = {
+						has_research_station = yes
+						has_resource = { type = sr_dark_matter amount > 0 }
+						has_resource = { type = sr_living_metal amount > 0 }
+						has_resource = { type = sr_zro amount > 0 }
+					}
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			alloys = 50
+		}
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_regular_empire = yes
+				}
+			}
+			consumer_goods = 2
+			energy = 1
+		}
+
+		upkeep = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_regular_empire = no
+				}
+			}
+			energy = 3
+		}
+
+		produces = {
+			society_research = 3
+			physics_research = 3
+			engineering_research = 3
+		}
+
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+				}
+			}
+			society_research = 1
+			physics_research = 1
+			engineering_research = 1
+		}
+
+		produces = {
+			trigger = {
+				has_starbase_building = sploit_aerospace_station
+			}
+			engineering_research = 5
+		}
+
+		produces = {
+			trigger = {
+				has_starbase_building = sploit_astrogeology_station
+			}
+			society_research = 5
+		}
+
+		produces = {
+			trigger = {
+				has_starbase_building = sploit_astrophysics_lab
+			}
+			physics_research = 5
+		}
+
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+				}
+			}
+			society_research = 1
+			physics_research = 1
+			engineering_research = 1
+		}
+				produces = {
+			trigger = {
+				has_starbase_building = orbital_institute
+			}
+			physics_research = 2
+			society_research = 2
+			engineering_research = 2
+		}
+
+		produces = {
+			trigger = {
+				has_starbase_building = curator_think_tank
+			}
+			physics_research = 1
+			society_research = 1
+			engineering_research = 1
+		}
+
+		produces = {
+			trigger = {
+				has_starbase_building = black_hole_observatory
+			}
+			physics_research = 2
+		}
+
+		produces = {
+			trigger = {
+				has_starbase_building = protostar_observatory
+			}
+			physics_research = 2
+		}
+
+		produces = {
+			trigger = {
+				has_starbase_building = dathnak_embassy
+			}
+			society_research = 2
+		}
+
+		produces = {
+			trigger = {
+				has_starbase_building = tiyanki_observatory
+			}
+			society_research = 2
+		}
+
+		produces = {
+			trigger = {
+				has_starbase_building = amoeba_observatory
+			}
+			society_research = 2
+		}
+
+		produces = {
+			trigger = {
+				has_starbase_building = pulsar_hole_observatory
+			}
+			engineering_research = 2
+		}
+	}
+
+
+	ai_build_at_chokepoint = no
+	ai_build_outside_chokepoint = yes
+	ai_weight = {
+		weight = 100
+	}
+}

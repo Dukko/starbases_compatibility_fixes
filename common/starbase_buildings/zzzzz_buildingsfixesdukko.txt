@@ -1,0 +1,117 @@
+orbital_institute = {
+	icon = "GFX_starbase_super_computer"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_global_research_initiative }
+		is_orbital_ring = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			has_starbase_size >= starbase_starport
+		}
+		OR = {
+			has_starbase_module = sploit_research_terminal
+			starbase_buildable_is_in_queue_before = {
+				first = sploit_research_terminal
+				second = orbital_institute
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 100
+		}
+
+		produces = {
+			physics_research = 5
+			society_research = 5
+			engineering_research = 5
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+				}
+			}
+			physics_research = 5
+			society_research = 5
+			engineering_research = 5
+		}
+
+		upkeep = {
+			energy = 3
+		}
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			always = yes
+		}
+		custom_tooltip = orbital_institute_effects
+	}
+
+	show_in_tech = "tech_global_research_initiative"
+
+	ai_build_at_chokepoint = no
+	ai_build_outside_chokepoint = yes
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+	}
+}
+
+sploit_supercapacitor_system = {
+	icon = "GFX_spaceport_supercapacitor_system"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_power_plant_2 }
+		NOT = { has_starbase_building = sploit_supercapacitor_system }
+		has_starbase_size >= starbase_starport
+	}
+
+	possible = {
+		OR = {
+			has_starbase_module = solar_panel_network
+			has_starbase_module = sploit_solar_panels
+			starbase_buildable_is_in_queue_before = {
+				first = sploit_solar_panels
+				second = sploit_supercapacitor_system
+			}
+		}
+	}
+
+	system_modifier = {
+		station_gatherers_energy_produces_mult = 0.25
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 250
+		}
+		produces = {
+			energy = 5
+		}
+	}
+	custom_tooltip = supercapacitor_system_tooltip
+	show_in_tech = "tech_power_plant_2"
+
+	ai_build_at_chokepoint = no
+	ai_build_outside_chokepoint = yes
+	ai_weight = {
+		weight = 100
+	}
+}
